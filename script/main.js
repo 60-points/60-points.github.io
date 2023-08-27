@@ -344,6 +344,7 @@ function PrintInfo(num) {
 
 NewGame();
 
+// 看怎么去掉这里的 return，不应该啊
 canvas.addEventListener("mousedown", (e) => {
   x = e.offsetX;
   y = e.offsetY;
@@ -392,3 +393,42 @@ canvas.addEventListener("mousedown", (e) => {
   }
 }, false);
 
+document.onkeydown = (e) => {
+  console.log(e.code);
+  if (e.code == "Numpad4" || e.code == "KeyK") {
+    num(0);
+  }
+  if (e.code == "Numpad5" || e.code == "KeyL") {
+    num(1);
+  }
+  if (e.code == "Numpad6" || e.code == "Semicolon") {
+    num(2);
+  }
+  if (e.code == "Numpad1" || e.code == "Comma") {
+    num(3);
+  }
+  if (e.code == "Numpad2" || e.code == "Period") {
+    num(4);
+  }
+  if (e.code == "KeyQ") {
+    ctrl(5);
+  }
+  if (e.code == "KeyW") {
+    ctrl(6);
+  }
+  if (e.code == "KeyE") {
+    ctrl(7);
+  }
+  if (e.code == "KeyR") {
+    ctrl(8);
+  }
+  if (e.code == "KeyA") {
+    ctrl(9);
+  }
+  if (e.code == "KeyS") {
+    ctrl(10);
+  }
+  if (e.code == "Escape") {
+    undo();
+  }
+}
