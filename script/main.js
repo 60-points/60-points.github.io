@@ -20,19 +20,13 @@ function PrintRational(a, x, y) {
   ctx.font = origin_font;
 }
 
-arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-nums = list[Math.floor(Math.random() * list.length)];
-for (i = 0; i < 5; ++i) {
-  nums[i] = new Rational(nums[i], 1);
-}
-now = -1; now2 = -1;  // 当前加粗的数字、控制
-sta = [];
 solved = -1;
 
 function NewGame() {
   solved++;
   arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-  nums = list[Math.floor(Math.random() * list.length)];
+  nums = [5, 12, 1, 1, 1];
+  // nums = list[Math.floor(Math.random() * list.length)];
   for (i = 0; i < 5; ++i) {
     nums[i] = new Rational(nums[i], 1);
   }
@@ -45,6 +39,7 @@ function NewGame() {
 }
 
 function num(k) {
+  if (arr[k] == 0) { return; }
   if (nums[k].deno == 0) { return; }
   if (now2 != -1) {
     if (now == k) { return; }
@@ -67,8 +62,8 @@ function num(k) {
   }
   cnt = 0;
   for (i = 0; i < 5; ++i) {
-    if (nums[i].num == 60 && nums[i].deno == 1) { cnt++; continue; }
     if (arr[i] == 0) { continue; }
+    if (nums[i].num == 60 && nums[i].deno == 1) { cnt++; continue; }
     cnt = -1; break;
   }
   if (cnt == 1) { NewGame(); }
@@ -394,7 +389,6 @@ canvas.addEventListener("mousedown", (e) => {
 }, false);
 
 document.onkeydown = (e) => {
-  console.log(e.code);
   if (e.code == "Numpad4" || e.code == "KeyK") {
     num(0);
   }
