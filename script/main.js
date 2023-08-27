@@ -25,8 +25,7 @@ solved = -1;
 function NewGame() {
   solved++;
   arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-  nums = [5, 12, 1, 1, 1];
-  // nums = list[Math.floor(Math.random() * list.length)];
+  nums = list[Math.floor(Math.random() * list.length)];
   for (i = 0; i < 5; ++i) {
     nums[i] = new Rational(nums[i], 1);
   }
