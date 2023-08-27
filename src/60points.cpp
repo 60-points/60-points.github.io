@@ -77,7 +77,7 @@ namespace solver
         {
             vector<int> nxt[2];
 
-            for (int b = 0; b < vec.size(); b++)
+            for (int b = 0; b < (int)vec.size(); b++)
                 nxt[(msk >> b) & 1].push_back(vec[b]);
 
             vector<Node *> tmp[2];
@@ -148,6 +148,7 @@ int main()
     srand(time(NULL));
     for (int i = 1; i <= 100; i++)
     {
-        auto tmp = solve({rand() % 13 + 1, rand() % 13 + 1, rand() % 13 + 1, rand() % 13 + 1, rand() % 13 + 1});
+        std::cout << solve({rand() % 13 + 1, rand() % 13 + 1, rand() % 13 + 1, rand() % 13 + 1, rand() % 13 + 1}).size() << " ";
     }
+    std::cout << std::endl;
 }
