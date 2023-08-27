@@ -69,9 +69,8 @@ function num(k) {
   for (i = 0; i < 5; ++i) {
     if (nums[i].num == 60 && nums[i].deno == 1) { cnt++; continue; }
     if (arr[i] == 0) { continue; }
-    cnt = -1; console.log(i); break;
+    cnt = -1; break;
   }
-  console.log(cnt);
   if (cnt == 1) { NewGame(); }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   PrintNum(nums[0], nums[1], nums[2], nums[3], nums[4]);
@@ -80,6 +79,14 @@ function num(k) {
 }
 
 function ctrl(k) {
+  if (k == 9 || k == 10) {
+    now2 = -1;
+    for (let j = 0; j < 5; ++j) {
+      if (arr[j] == 0) { continue; }
+      ctrl(k == 9 ? 5 : 7);
+      num(j);
+    }
+  }
   if (now == -1) { return; }
   if (now2 != -1) {
     arr[now2] = 1;
@@ -98,19 +105,21 @@ function skip() {
 }
 
 function undo() {
-  if (sta.length == 0) { return; }
-  now2 = -1;
   for (i = 0; i < 9; ++i) {
     if (arr[i] != 0) {
       arr[i] = 1;
     }
   }
+  arr[now2] = 1;
   now2 = -1;
-  now = sta[sta.length - 1].apos; 
-  arr[now] = 2;
-  nums[sta[sta.length - 1].apos] = sta[sta.length - 1].a;
-  nums[sta[sta.length - 1].bpos] = sta[sta.length - 1].b;
-  sta.pop();
+  now = -1;
+  if (sta.length != 0) {
+    now = sta[sta.length - 1].apos;
+    arr[now] = 2;
+    nums[sta[sta.length - 1].apos] = sta[sta.length - 1].a;
+    nums[sta[sta.length - 1].bpos] = sta[sta.length - 1].b;
+    sta.pop();
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   PrintNum(nums[0], nums[1], nums[2], nums[3], nums[4]);
   PrintControl();
@@ -374,7 +383,6 @@ canvas.addEventListener("mousedown", (e) => {
     }
   }
   if (gap * 4 + size * 3 <= x && x <= gap * 4 + size * 3 + sze * 3) {
-
     if (gap * 2 + size * 2 - sze <= y && y <= gap * 2 + size * 2) {
       skip(); return;
     }
