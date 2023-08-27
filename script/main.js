@@ -21,13 +21,7 @@ function PrintRational(a, x, y) {
 }
 
 arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-nums = [
-  (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-  (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-  (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-  (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-  (new Rational(Math.floor(Math.random() * 13) + 1, 1))
-];
+nums = list[Math.floor(Math.random() * list.length)];
 now = -1; now2 = -1;  // 当前加粗的数字、控制
 sta = [];
 solved = -1;
@@ -35,13 +29,7 @@ solved = -1;
 function NewGame() {
   solved++;
   arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-  nums = [
-    (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-    (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-    (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-    (new Rational(Math.floor(Math.random() * 13) + 1, 1)),
-    (new Rational(Math.floor(Math.random() * 13) + 1, 1))
-  ];
+  nums = list[Math.floor(Math.random() * list.length)];
   now = -1; now2 = -1;
   sta = [];
   ctx.clearRect(0, 0, canvas.width, canvas.height);
