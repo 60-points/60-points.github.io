@@ -22,6 +22,9 @@ function PrintRational(a, x, y) {
 
 arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 nums = list[Math.floor(Math.random() * list.length)];
+for (i = 0; i < 5; ++i) {
+  nums[i] = new Rational(nums[i], 1);
+}
 now = -1; now2 = -1;  // 当前加粗的数字、控制
 sta = [];
 solved = -1;
@@ -30,6 +33,9 @@ function NewGame() {
   solved++;
   arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   nums = list[Math.floor(Math.random() * list.length)];
+  for (i = 0; i < 5; ++i) {
+    nums[i] = new Rational(nums[i], 1);
+  }
   now = -1; now2 = -1;
   sta = [];
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -76,7 +82,6 @@ function num(k) {
 function ctrl(k) {
   if (now == -1) { return; }
   if (now2 != -1) {
-    console.log("aycnn");
     arr[now2] = 1;
   }
   now2 = k;
@@ -333,8 +338,6 @@ NewGame();
 canvas.addEventListener("mousedown", (e) => {
   x = e.offsetX;
   y = e.offsetY;
-  console.log(x, y);
-  console.log(size, gap, sze);
   if (gap <= x && x <= gap + size && gap <= y && y <= gap + size) {
     num(0); return;
   }
