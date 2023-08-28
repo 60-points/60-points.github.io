@@ -75,7 +75,12 @@ function num(k) {
 function ctrl(k) {
   if (k == 9 || k == 10) {
     now2 = -1;
-    for (let j = 0; j < 5; ++j) {
+    let end = 4;
+    while (end >= 0) {
+      if (arr[end] != 0) { continue; }
+      end--;
+    }
+    for (let j = 0; j <= end; ++j) {
       if (arr[j] == 0) { continue; }
       ctrl(k == 9 ? 5 : 7);
       num(j);
