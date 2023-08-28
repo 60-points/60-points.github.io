@@ -80,7 +80,6 @@ function ctrl(k) {
     while (end >= 0 && arr[end] == 0) {
       end--;
     }
-    console.log(end);
     now = -1;
     for (let j = 0; j <= end; ++j) {
       if (arr[j] == 0) { continue; }
@@ -130,7 +129,6 @@ function undo() {
 
 // 0: 不显示 1: 细体 2: 粗体
 function PrintNum(a, b, c, d, e) {
-  console.log("gens", arr[4]);
   ctx.strokeStyle = "#00aa00";
   ctx.fillStyle = "#00aa00";
   ctx.font = "bold 80px 'Microsoft Yahei'";
