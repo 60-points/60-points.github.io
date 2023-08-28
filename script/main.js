@@ -26,9 +26,6 @@ function NewGame() {
   solved++;
   arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   nums = list[Math.floor(Math.random() * list.length)];
-  for (i = 0; i < 5; ++i) {
-    nums[i] = new Rational(nums[i], 1);
-  }
   now = -1; now2 = -1;
   sta = [];
   ctx.clearRect(0, 0, canvas.width, canvas.height);
