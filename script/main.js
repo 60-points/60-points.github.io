@@ -25,7 +25,8 @@ solved = -1;
 function NewGame() {
   solved++;
   arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-  nums = list[Math.floor(Math.random() * list.length)];
+  nums = [];
+  Object.assign(nums, list[Math.floor(Math.random() * list.length)]);
   now = -1; now2 = -1;
   sta = [];
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -62,7 +63,10 @@ function num(k) {
     if (nums[i].num == 60 && nums[i].deno == 1) { cnt++; continue; }
     cnt = -1; break;
   }
-  if (cnt == 1) { NewGame(); }
+  if (cnt == 1) {
+    NewGame();
+    return;
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   PrintNum(nums[0], nums[1], nums[2], nums[3], nums[4]);
   PrintControl();
@@ -76,11 +80,14 @@ function ctrl(k) {
     while (end >= 0 && arr[end] == 0) {
       end--;
     }
+    console.log(end);
+    now = -1;
     for (let j = 0; j <= end; ++j) {
       if (arr[j] == 0) { continue; }
       ctrl(k == 9 ? 5 : 7);
       num(j);
     }
+    return;
   }
   if (now == -1) { return; }
   if (now2 != -1) {
@@ -123,6 +130,7 @@ function undo() {
 
 // 0: 不显示 1: 细体 2: 粗体
 function PrintNum(a, b, c, d, e) {
+  console.log("gens", arr[4]);
   ctx.strokeStyle = "#00aa00";
   ctx.fillStyle = "#00aa00";
   ctx.font = "bold 80px 'Microsoft Yahei'";
