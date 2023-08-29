@@ -27,6 +27,7 @@ function NewGame() {
   arr = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   nums = [];
   Object.assign(nums, list[Math.floor(Math.random() * list.length)]);
+  nums.sort(() => { return 0.5 - Math.random(); });
   now = -1; now2 = -1;
   sta = [];
   ctx.clearRect(0, 0, canvas.width, canvas.height);
