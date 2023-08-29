@@ -1,7 +1,7 @@
 const canvas = document.getElementById("main");
 const ctx = canvas.getContext("2d");
 
-size = 150; gap = 30; sze = 60;
+size = 150; gap = 30; sze = 60; time = 0;
 
 // 五个放数的框
 function PrintRational(a, x, y) {
@@ -124,7 +124,7 @@ function undo() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   PrintNum(nums[0], nums[1], nums[2], nums[3], nums[4]);
   PrintControl();
-  PrintInfo(solved);
+  PrintInfo();
 }
 
 // 0: 不显示 1: 细体 2: 粗体
@@ -328,6 +328,7 @@ function PrintControl() {
   ctx.font = "bold 35px 'Microsoft Yahei'";
   ctx.strokeRect(x, y, sze * 3, sze);
   ctx.fillText("跳过", x + sze * 1.5, y + sze / 2);
+  // 撤销
   y += sze + gap;
   ctx.fillStyle = "#000000";
   ctx.strokeStyle = "#000000";
@@ -335,15 +336,21 @@ function PrintControl() {
   ctx.fillText("撤销", x + sze * 1.5, y + sze / 2);
 }
 
-function PrintInfo(num) {
+function PrintInfo() {
   ctx.fillStyle = "#000000";
   ctx.font = "bold 20px 'Microsoft Yahei'";
   ctx.textBaseline = "top";
   ctx.textAlign = "left";
-  ctx.fillText("已解：" + num, size * 3 + gap * 4, gap);
+  ctx.fillText("已解：" + solved, size * 3 + gap * 4, gap);
+  ctx.fillText("时间：" + time, size * 3 + gap * 4, gap * 2 + 40);
 }
 
 NewGame();
+window.setInterval(() => {
+  time++;
+  ctx.clearRect(size * 3 + gap * 4, 0, canvas.width, gap * 2 + size * 2 - sze - 5);
+  PrintInfo();
+}, 1000);
 
 // 看怎么去掉这里的 return，不应该啊
 canvas.addEventListener("mousedown", (e) => {
